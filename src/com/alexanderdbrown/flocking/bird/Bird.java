@@ -1,15 +1,14 @@
 package com.alexanderdbrown.flocking.bird;
 
+import static java.lang.Math.PI;
+
 import java.awt.Point;
 
 import com.alexanderdbrown.flocking.Flockable;
 import com.alexanderdbrown.flocking.Map;
-import com.alexanderdbrown.flocking.Mouse;
-
-import static java.lang.Math.PI;
 
 public abstract class Bird implements Flockable {
-	private final static int MAX_ACC = 3;
+	private final static int MAX_ACC = 4;
 	private final static int MIN_ACC = 1;
 	private final static double TURN = PI / 50;
 
@@ -24,7 +23,7 @@ public abstract class Bird implements Flockable {
 	 * <p>
 	 * Starts at 0.0 (North).
 	 */
-	private double direction = 0 * TURN;
+	protected double direction = 0 * TURN;
 
 	public Bird(int x, int y) {
 		this.location = new Point(x, y);
@@ -45,7 +44,6 @@ public abstract class Bird implements Flockable {
 	public void tick() {
 		this.aim.setLocation(this.getNewAim());
 		this.move();
-
 	}
 
 	protected abstract Point getNewAim();
@@ -62,8 +60,6 @@ public abstract class Bird implements Flockable {
 				}
 			}
 		}
-		System.out.println();
-
 		final double adj = a.x - b.x;
 		final double opp = a.y - b.y;
 		final double hyp = Math.sqrt(opp * opp + adj * adj);
@@ -93,10 +89,11 @@ public abstract class Bird implements Flockable {
 		if (this.location.equals(this.getAim())) {
 			return;
 		}
-
+		
 		this.calcAngle();
 		this.calcMovement();
 		this.calcMove();
+		
 	}
 
 	private void calcAngle() {
@@ -138,7 +135,7 @@ public abstract class Bird implements Flockable {
 		if (speed2 > hyp2) {
 			final int speed2primed = this.speed - 1 * this.speed - 1;
 
-			if (isCloser(speed2primed, speed2, hyp2) && this.acceleration >= MIN_ACC) {
+			if (isCloser(speed2primed, speed2, hyp2) && this.acceleration > MIN_ACC + 1) {
 				this.acceleration--;
 			}
 		} else if (speed2 < hyp2) {
