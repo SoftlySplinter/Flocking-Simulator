@@ -1,4 +1,8 @@
-Flocking
-========
+#AI Codebench
+This is somewhere I'm going to use to store some of my fun little AI projects.
 
-I've been playing with flocking a touch. There's still a fair few bugs, but it's working nicely enough for me to chance upload it.
+##Flocking
+Looking at flocking and swarm behaviour.
+
+##Ant Colony Optimisation (ACO)
+Trying to iumplement ACO.
