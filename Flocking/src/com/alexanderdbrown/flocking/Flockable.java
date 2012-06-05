@@ -9,6 +9,7 @@ import java.awt.Point;
  * 
  */
 public interface Flockable {
+	//test
 	/** Get the member's location */
 	public Point getLocation();
 
